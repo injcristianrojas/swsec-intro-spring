@@ -7,7 +7,7 @@
 <body>
 	<h3>Welcome! The time on the server is ${serverTime}.</h3>
 
-	<form action="/" method="post">
+	<form action="/greeting" method="post">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
 		<p>
