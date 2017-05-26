@@ -16,8 +16,8 @@ public class PersonController {
 	
 	@RequestMapping(value = "/persons")
 	public String getAllPersons(Model model) {
-		model.addAttribute("person", personService.getAllPersons());
-		return "personsListDisplay";
+		model.addAttribute("personsList", personService.getAllPersons());
+		return "persons";
 	}
 	
 }

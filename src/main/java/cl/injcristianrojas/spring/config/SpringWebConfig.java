@@ -52,8 +52,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		Properties hibernateProperties = new Properties();
 		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLiteDialect");
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
-		hibernateProperties.setProperty("hibernate.format_sql", "true");
-		hibernateProperties.setProperty("hibernate.use_sql_comments", "true");
 		hibernateProperties.setProperty("hibernate.cache.provider_class", "org.hibernate.cache.EhCacheProvider");
 		return hibernateProperties;
 	}
@@ -63,7 +61,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	public AnnotationSessionFactoryBean factoryBean() {
 		AnnotationSessionFactoryBean factoryBean = new AnnotationSessionFactoryBean();
 		factoryBean.setDataSource(dataSource());
-		//factoryBean.setPackagesToScan(new String[] {"cl.injcristianrojas.spring.data.model"}); TODO
+		factoryBean.setPackagesToScan(new String[] {"cl.injcristianrojas.spring.data.model"});
 		factoryBean.setHibernateProperties(hibernateProperties());
 		return factoryBean;
 	}

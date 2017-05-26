@@ -7,10 +7,10 @@
 <body>
 	<h3>People registered in this system are:</h3>
 	<h3>Persons List</h3>
-	<table class="tg">
+	<table class="tg" border="1">
 		<tr>
-			<th width="80">Person Name</th>
-			<th width="120">Person Surname</th>
+			<th>Person Name</th>
+			<th>Person Surname</th>
 		</tr>
 		<c:forEach items="${personsList}" var="person">
 			<tr>
