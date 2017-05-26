@@ -19,6 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.headers().xssProtection().disable();
+		http.headers().cacheControl().frameOptions().contentTypeOptions(); // X-XSS-Protection disabled
 	}
 }
