@@ -16,9 +16,10 @@ public class PersonDAOImpl implements PersonDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Override
 	public List<Person> getAllPersons() {
 		Session session = sessionFactory.openSession();
-		String hql = "FROM person";
+		String hql = "from Person";
 		Query query = session.createQuery(hql);
 		return query.list();
 	}

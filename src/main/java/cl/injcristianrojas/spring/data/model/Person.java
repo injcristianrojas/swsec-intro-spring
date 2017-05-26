@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name = "Person")
 @Table(name = "persons")
 public class Person {
 	
@@ -41,6 +41,8 @@ public class Person {
 		this.surname = surname;
 	}
 	
-	
-
+	@Override
+	public String toString() {
+		return "Person[id=" + id + ", name=" + name + ", surname=" + surname + "]";
+	}
 }

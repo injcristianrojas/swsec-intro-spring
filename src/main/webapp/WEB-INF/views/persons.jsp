@@ -7,19 +7,17 @@
 <body>
 	<h3>People registered in this system are:</h3>
 	<h3>Persons List</h3>
-	<c:if test="${!empty personsList}">
-		<table class="tg">
+	<table class="tg">
+		<tr>
+			<th width="80">Person Name</th>
+			<th width="120">Person Surname</th>
+		</tr>
+		<c:forEach items="${personsList}" var="person">
 			<tr>
-				<th width="80">Person Name</th>
-				<th width="120">Person Surname</th>
+				<td>${person.name}</td>
+				<td>${person.surname}</td>
 			</tr>
-			<c:forEach items="${personsList}" var="person">
-				<tr>
-					<td>${person.name}</td>
-					<td>${person.surname}</td>
-				</tr>
-			</c:forEach>
-		</table>
-	</c:if>
+		</c:forEach>
+	</table>
 </body>
 </html>

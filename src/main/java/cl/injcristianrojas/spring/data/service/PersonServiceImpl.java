@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import cl.injcristianrojas.spring.data.dao.PersonDAO;
 import cl.injcristianrojas.spring.data.model.Person;
 
-@Service
+@Service("PersonService")
 public class PersonServiceImpl implements PersonService {
 	
 	@Autowired

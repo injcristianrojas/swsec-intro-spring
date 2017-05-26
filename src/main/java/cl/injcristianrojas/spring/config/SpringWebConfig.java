@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.hibernate3.HibernateTransactionManager;
-import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -48,16 +51,19 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	public Properties hibernateProperties() {
 		Properties hibernateProperties = new Properties();
 		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLiteDialect");
-		hibernateProperties.setProperty("hibernate.show_sql", "True");
+		hibernateProperties.setProperty("hibernate.show_sql", "true");
+		hibernateProperties.setProperty("hibernate.format_sql", "true");
+		hibernateProperties.setProperty("hibernate.use_sql_comments", "true");
 		hibernateProperties.setProperty("hibernate.cache.provider_class", "org.hibernate.cache.EhCacheProvider");
 		return hibernateProperties;
 	}
 
 	@Bean
 	@Autowired
-	public LocalSessionFactoryBean factoryBean() {
-		LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
+	public AnnotationSessionFactoryBean factoryBean() {
+		AnnotationSessionFactoryBean factoryBean = new AnnotationSessionFactoryBean();
 		factoryBean.setDataSource(dataSource());
+		//factoryBean.setPackagesToScan(new String[] {"cl.injcristianrojas.spring.data.model"}); TODO
 		factoryBean.setHibernateProperties(hibernateProperties());
 		return factoryBean;
 	}
@@ -67,4 +73,16 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	public HibernateTransactionManager getTransactionManager(SessionFactory factory) {
 		return new HibernateTransactionManager(factory);
 	}
+
+	@Bean
+	public DataSourceInitializer dataSourceInitializer() {
+		ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
+		resourceDatabasePopulator.addScript(new ClassPathResource("/import.sql"));
+
+		DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
+		dataSourceInitializer.setDataSource(dataSource());
+		dataSourceInitializer.setDatabasePopulator(resourceDatabasePopulator);
+		return dataSourceInitializer;
+	}
+	
 }
