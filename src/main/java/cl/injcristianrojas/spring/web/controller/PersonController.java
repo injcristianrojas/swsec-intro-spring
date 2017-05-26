@@ -15,7 +15,7 @@ public class PersonController {
 	@Resource(name = "PersonService")
 	private PersonService personService;
 	
-	@RequestMapping(value = "/persons") // TODO make type selector (dropdown)
+	@RequestMapping(value = "/persons")
 	public String getAllPersons(Model model) {
 		model.addAttribute("personsList", personService.getAllPersons());
 		return "persons";

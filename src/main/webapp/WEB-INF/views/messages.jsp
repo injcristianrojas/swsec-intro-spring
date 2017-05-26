@@ -9,5 +9,13 @@
 	<c:forEach items="${messagesList}" var="message">
 		<p>${message.text}</p>
 	</c:forEach>
+	<form action="/messages" method="post">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+		<p>
+			Enter new message: <input type="text" name="text"> <input
+				type="submit" value="Go">
+		</p>
+	</form>
 </body>
 </html>

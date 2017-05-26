@@ -12,7 +12,7 @@
 			value="${_csrf.token}" />
 		<p>
 			What's your name? <input type="text" name="name"> <input
-				type="submit" value="Aceptar">
+				type="submit" value="Go">
 		</p>
 	</form>
 
