@@ -15,8 +15,11 @@
 				type="submit" value="Aceptar">
 		</p>
 	</form>
-	
-	<p><a href="/persons">View all persons</a></p>
+
+	<p>
+		<a href="/persons">View all persons</a><br>
+		<a href="/messages">View all messages</a>
+	</p>
 
 </body>
 </html>

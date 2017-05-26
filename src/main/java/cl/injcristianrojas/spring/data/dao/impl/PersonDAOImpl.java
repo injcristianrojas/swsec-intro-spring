@@ -1,4 +1,4 @@
-package cl.injcristianrojas.spring.data.dao;
+package cl.injcristianrojas.spring.data.dao.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import cl.injcristianrojas.spring.data.dao.PersonDAO;
 import cl.injcristianrojas.spring.data.model.Person;
 
 @SuppressWarnings("unchecked")

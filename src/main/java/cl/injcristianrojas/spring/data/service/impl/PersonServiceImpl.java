@@ -1,4 +1,4 @@
-package cl.injcristianrojas.spring.data.service;
+package cl.injcristianrojas.spring.data.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import cl.injcristianrojas.spring.data.dao.PersonDAO;
 import cl.injcristianrojas.spring.data.model.Person;
+import cl.injcristianrojas.spring.data.service.PersonService;
 
 @Service("PersonService")
 public class PersonServiceImpl implements PersonService {
