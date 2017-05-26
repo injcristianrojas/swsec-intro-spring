@@ -5,8 +5,7 @@
 <title>Home</title>
 </head>
 <body>
-	<h3>People registered in this system are:</h3>
-	<h3>Persons List</h3>
+	<h3>People List:</h3>
 	<table class="tg" border="1">
 		<tr>
 			<th>Person Name</th>

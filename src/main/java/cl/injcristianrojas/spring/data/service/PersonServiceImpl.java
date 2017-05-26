@@ -24,4 +24,9 @@ public class PersonServiceImpl implements PersonService {
 		return personDAO.getAllPersons();
 	}
 
+	@Override
+	public List<Person> getPersonsOfType(String type) {
+		return personDAO.getPersonsOfType(type);
+	}
+
 }

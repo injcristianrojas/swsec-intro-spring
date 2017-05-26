@@ -15,6 +15,8 @@
 				type="submit" value="Aceptar">
 		</p>
 	</form>
+	
+	<p><a href="/persons">View all persons</a></p>
 
 </body>
 </html>

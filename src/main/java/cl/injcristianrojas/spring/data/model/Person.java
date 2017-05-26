@@ -22,11 +22,9 @@ public class Person {
 	@Column(name = "surname")
 	private String surname;
 	
-	@Column(name = "username")
-	private String username;
-	
-	@Column(name = "password")
-	private String password;
+	@Column(name = "type")
+	private String type;
+
 	
 	public int getId() {
 		return id;
@@ -46,22 +44,15 @@ public class Person {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-
-	public String getUsername() {
-		return username;
+	public String getType() {
+		return type;
 	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	@Override
 	public String toString() {
-		return "Person[id=" + id + ", name=" + name + ", surname=" + surname + ", username=" + username + ", password=" + password + "]";
+		return "Person[id=" + id + ", name=" + name + ", surname=" + surname + ", type=" + type + "]";
 	}
 }

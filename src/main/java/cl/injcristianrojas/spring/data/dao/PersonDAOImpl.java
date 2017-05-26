@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import cl.injcristianrojas.spring.data.model.Person;
 
+@SuppressWarnings("unchecked")
 @Repository
 public class PersonDAOImpl implements PersonDAO {
 	
@@ -28,6 +29,14 @@ public class PersonDAOImpl implements PersonDAO {
 	public void insertPerson(Person person) {
 		Session session = sessionFactory.openSession();
 		session.save(person);
+	}
+
+	@Override
+	public List<Person> getPersonsOfType(String type) {
+		Session session = sessionFactory.openSession();
+		String hql = "from Person p where p.type = '" + type + "'";
+		Query query = session.createQuery(hql);
+		return query.list();
 	}
 
 	

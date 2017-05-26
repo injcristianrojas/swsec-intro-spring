@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cl.injcristianrojas.spring.data.service.PersonService;
@@ -14,9 +15,15 @@ public class PersonController {
 	@Resource(name = "PersonService")
 	private PersonService personService;
 	
-	@RequestMapping(value = "/persons")
+	@RequestMapping(value = "/persons") // TODO make type selector (dropdown)
 	public String getAllPersons(Model model) {
 		model.addAttribute("personsList", personService.getAllPersons());
+		return "persons";
+	}
+	
+	@RequestMapping(value = "/persons/{type}")
+	public String getAllPersonsWithType(@PathVariable("type") String type, Model model) {
+		model.addAttribute("personsList", personService.getPersonsOfType(type));
 		return "persons";
 	}
 	

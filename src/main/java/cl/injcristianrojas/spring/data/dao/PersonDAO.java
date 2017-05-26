@@ -8,5 +8,6 @@ public interface PersonDAO {
 
 	public void insertPerson(Person person);
 	public List<Person> getAllPersons();
+	public List<Person> getPersonsOfType(String type);
 
 }

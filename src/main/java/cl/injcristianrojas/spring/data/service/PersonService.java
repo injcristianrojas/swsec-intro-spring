@@ -7,4 +7,5 @@ import cl.injcristianrojas.spring.data.model.Person;
 public interface PersonService {
 	public void createPerson(Person person);
 	public List<Person> getAllPersons();
+	public List<Person> getPersonsOfType(String type);
 }
