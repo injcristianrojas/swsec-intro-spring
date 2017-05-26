@@ -12,11 +12,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password("admin").roles("USER"); // TODO add multiple users. One admin
+		auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("jperez").password("123").roles("USER");
+		auth.inMemoryAuthentication().withUser("pdelospalotes").password("abc").roles("USER");
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//http.headers().xssProtection().disable();
+		http.headers().xssProtection().disable();
 	}
 }
