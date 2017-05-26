@@ -2,4 +2,4 @@
 
 .classpath
 .settings/*
-/person_db.sqlite
+*.sqlite
