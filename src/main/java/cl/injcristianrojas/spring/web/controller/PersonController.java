@@ -17,13 +17,13 @@ public class PersonController {
 	
 	@RequestMapping(value = "/persons")
 	public String getAllPersons(Model model) {
-		model.addAttribute("personsList", personService.getAllPersons());
-		return "persons";
+		return "redirect:/persons/1";
 	}
 	
 	@RequestMapping(value = "/persons/{type}")
 	public String getAllPersonsWithType(@PathVariable("type") String type, Model model) {
 		model.addAttribute("personsList", personService.getPersonsOfType(type));
+		model.addAttribute("type", type);
 		return "persons";
 	}
 	

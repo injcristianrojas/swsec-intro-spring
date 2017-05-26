@@ -17,7 +17,7 @@
 	</form>
 
 	<p>
-		<a href="/persons">View all persons</a><br>
+		<a href="/persons">View persons</a><br>
 		<a href="/messages">View all messages</a>
 	</p>
 

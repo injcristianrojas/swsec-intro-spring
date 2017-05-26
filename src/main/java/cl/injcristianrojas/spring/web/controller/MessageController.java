@@ -17,7 +17,7 @@ public class MessageController {
 	@Resource(name = "MessageService")
 	private MessageService messageService;
 	
-	@RequestMapping(value = "/messages", method = RequestMethod.GET) // TODO make it show only one type of user and inject it
+	@RequestMapping(value = "/messages", method = RequestMethod.GET)
 	public String getAllMessages(Model model) {
 		model.addAttribute("messagesList", messageService.getAllMessages());
 		return "messages";
