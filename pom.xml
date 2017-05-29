@@ -3,18 +3,19 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cl.injcristianrojas</groupId>
-	<artifactId>spring</artifactId>
+	<artifactId>spring-swsec</artifactId>
 	<name>spring-swsec</name>
 	<packaging>war</packaging>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<properties>
 		<java-version>1.7</java-version>
 		<org.springframework-version>3.2.17.RELEASE</org.springframework-version>
 		<org.springsecurity-version>3.2.9.RELEASE</org.springsecurity-version>
-		<org.aspectj-version>1.6.10</org.aspectj-version>
-		<owasp-dependency-checker-version>1.4.5</owasp-dependency-checker-version>
-		<jetty-version>9.4.3.v20170317</jetty-version>
 		<hibernate-version>3.6.3.Final</hibernate-version>
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<jetty-version>9.4.3.v20170317</jetty-version>
+		<owasp-dependency-checker-version>1.4.5</owasp-dependency-checker-version>
+		<findsecbugs-version>1.6.0</findsecbugs-version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -156,11 +157,19 @@
 				</configuration>
 			</plugin>
 
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version> <configuration> <source>${java-version}</source>
-				<target>${java-version}</target> <compilerArgument>-Xlint:all</compilerArgument>
-				<showWarnings>true</showWarnings> <showDeprecation>true</showDeprecation>
-				</configuration> </plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<compilerArgument>-Xlint:all</compilerArgument>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -171,6 +180,7 @@
 				</configuration>
 			</plugin>
 
+			<!-- Jetty Server -->
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
@@ -179,11 +189,70 @@
 					<scanIntervalSeconds>5</scanIntervalSeconds>
 				</configuration>
 			</plugin>
+
+			<!-- JSP compiler -->
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-jspc-maven-plugin</artifactId>
+				<version>${jetty-version}</version>
+				<executions>
+					<execution>
+						<id>jspc</id>
+						<goals>
+							<goal>jspc</goal>
+						</goals>
+						<configuration>
+							<jspc>
+								<smapSuppressed>false</smapSuppressed>
+								<smapDumped>true</smapDumped>
+							</jspc>
+							<keepSources>true</keepSources>
+							<useProvidedScope>true</useProvidedScope>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
 	<reporting>
 		<plugins>
+
+			<!-- Findbugs + Find-Sec-Bugs -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.4</version>
+				<configuration>
+					<effort>Max</effort>
+					<threshold>Low</threshold>
+					<failOnError>false</failOnError>
+					<includeFilterFile>
+						${session.executionRootDirectory}/findbugs-security-include.xml
+					</includeFilterFile>
+					<excludeFilterFile>
+						${session.executionRootDirectory}/findbugs-security-exclude.xml
+					</excludeFilterFile>
+					<plugins>
+						<plugin>
+							<groupId>com.h3xstream.findsecbugs</groupId>
+							<artifactId>findsecbugs-plugin</artifactId>
+							<version>${findsecbugs-version}</version>
+						</plugin>
+					</plugins>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+				</configuration>
+			</plugin>
+
+			<!-- OWASP Dependency Checker -->
 			<plugin>
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
@@ -197,6 +266,7 @@
 				</reportSets>
 			</plugin>
 
+			<!-- Maven Versions -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>versions-maven-plugin</artifactId>
