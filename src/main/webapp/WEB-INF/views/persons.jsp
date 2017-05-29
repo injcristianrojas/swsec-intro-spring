@@ -6,7 +6,13 @@
 <title>Home</title>
 </head>
 <body>
-	<p align="right">User:<sec:authentication property="principal.username" /><br><a href="/logout">Exit</a></p>
+	<p align="right">
+		user:
+		<sec:authentication property="principal.username" />
+		role:
+		<sec:authentication property="principal.authorities" />
+		<a href="/logout">Exit</a>
+	</p>
 	<h3>People List (type ${type}):</h3>
 	<table class="tg" border="1">
 		<tr>
@@ -22,6 +28,8 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<p><a href="/">Go Home</a></p>
+	<p>
+		<a href="/">Go Home</a>
+	</p>
 </body>
 </html>

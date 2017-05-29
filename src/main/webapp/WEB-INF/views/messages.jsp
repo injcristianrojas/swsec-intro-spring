@@ -6,7 +6,13 @@
 <title>Home</title>
 </head>
 <body>
-	<p align="right">User:<sec:authentication property="principal.username" /><br><a href="/logout">Exit</a></p>
+	<p align="right">
+		user:
+		<sec:authentication property="principal.username" />
+		role:
+		<sec:authentication property="principal.authorities" />
+		<a href="/logout">Exit</a>
+	</p>
 	<table class="tg" border="1">
 		<tr>
 			<th>Message List</th>
@@ -18,13 +24,13 @@
 		</c:forEach>
 	</table>
 	<form action="/messages" method="post">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<p>
-			Enter new message: <input type="text" name="text"> <input
-				type="submit" value="Go">
+			Enter new message: <input type="text" name="text"> <input type="submit" value="Go">
 		</p>
 	</form>
-	<p><a href="/">Go Home</a></p>
+	<p>
+		<a href="/">Go Home</a>
+	</p>
 </body>
 </html>
