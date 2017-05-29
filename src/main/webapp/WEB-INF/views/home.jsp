@@ -18,7 +18,8 @@
 
 	<p>
 		<a href="/persons">View persons</a><br>
-		<a href="/messages">View all messages</a>
+		<a href="/messages">View all messages</a><br>
+		<a href="/logout">Exit</a>
 	</p>
 
 </body>
