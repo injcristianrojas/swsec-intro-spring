@@ -14,7 +14,7 @@
 		<hibernate-version>3.6.3.Final</hibernate-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<jetty-version>9.4.3.v20170317</jetty-version>
-		<owasp-dependency-checker-version>1.4.5</owasp-dependency-checker-version>
+		<owasp-dependency-checker-version>3.2.0</owasp-dependency-checker-version>
 		<findsecbugs-version>1.6.0</findsecbugs-version>
 	</properties>
 	<dependencies>
